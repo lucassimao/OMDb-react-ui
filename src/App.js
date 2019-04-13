@@ -1,28 +1,57 @@
 import React from "react";
 import { render } from "react-dom";
 import OmdbApi from "./api/OmdbApi";
+import SearchBox from "./SearchBox";
+import SearchResult from "./SearchResult";
+import { Provider } from "./SearchContext";
 
 class App extends React.Component {
-  state = {};
-
   constructor(props) {
     super(props);
-    new OmdbApi().moviesByYear(2019).then(movie => {
-      console.log(movie);
-      this.setState({ movie });
-    });
+
+    this.state = {
+      keyword: "brazil",
+      year: 2019,
+      results: [],
+      handleKeywordChange: this.handleKeywordChange,
+      handleYearChange: this.handleYearChange,
+      getResults: this.getResults,
+      handleSearchRequest: this.handleSearchRequest
+    };
   }
 
+  componentDidMount() {
+    this.handleSearchRequest();
+  }
+
+  handleKeywordChange = event => {
+    this.setState({
+      keyword: event.target.value
+    });
+  };
+  handleYearChange = event => {
+    this.setState({
+      year: event.target.value
+    });
+  };
+  getResults = _ => {
+    return this.state.results;
+  };
+
+  handleSearchRequest = _ => {
+    new OmdbApi().search(this.state.keyword).then(results => {
+      this.setState({ results: results.Search });
+    });
+  };
   render() {
-    if (this.state.movie) {
-      return (
-        <div>
-          <h1> {this.state.movie.Title} </h1>
-          <img src={this.state.movie.Poster} />
-          <p>{this.state.movie.Plot}</p>
-        </div>
-      );
-    } else return <h1> wait ...</h1>;
+    return (
+      <div className="container">
+        <Provider value={this.state}>
+          <SearchBox />
+          <SearchResult />
+        </Provider>
+      </div>
+    );
   }
 }
 render(<App />, document.getElementById("root"));
