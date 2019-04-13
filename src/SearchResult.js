@@ -1,16 +1,25 @@
 import React from "react";
 import { Consumer } from "./SearchContext";
+import spinner from "./img/Spinner-1s-200px.gif";
+
+const handleImgError = evt => {
+  evt.target.onerror = null;
+  evt.target.src =
+    "https://via.placeholder.com/300?text=Sorry+image+is+not+available+anymore";
+};
 
 const SearchResult = props => {
   return (
     <ul className="movie-list">
       <Consumer>
         {ctx =>
-          ctx.results ? (
+          ctx.searching ? (
+            <img src={spinner} alt="wait ..." />
+          ) : ctx.results ? (
             ctx.results.map(movie => (
               <li key={movie.imdbID}>
                 <h2 className="movie-title"> {movie.Title} </h2>
-                <img src={movie.Poster} />
+                <img src={movie.Poster} onError={handleImgError} />
                 <section className="movie-details">
                   <p className="movie-plot">{movie.Plot}</p>
                   <span className="movie-year">Year: {movie.Year}</span>

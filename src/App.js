@@ -11,10 +11,15 @@ class App extends React.Component {
 
     this.state = {
       keyword: "brazil",
-      year: 2019,
+      years: [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010],
+      types: ["movie", "series", "episodes"],
+      year: "",
+      type: "movie",
+      searching: false,
       results: [],
       handleKeywordChange: this.handleKeywordChange,
       handleYearChange: this.handleYearChange,
+      handleTypeChange: this.handleTypeChange,
       getResults: this.getResults,
       handleSearchRequest: this.handleSearchRequest
     };
@@ -34,13 +39,21 @@ class App extends React.Component {
       year: event.target.value
     });
   };
+
+  handleTypeChange = event => {
+    this.setState({
+      type: event.target.value
+    });
+  };
   getResults = _ => {
     return this.state.results;
   };
 
   handleSearchRequest = _ => {
-    new OmdbApi().search(this.state.keyword).then(results => {
-      this.setState({ results: results.Search });
+    this.setState({ searching: true });
+    const { keyword, type, year } = this.state;
+    new OmdbApi().search(keyword, type, year).then(results => {
+      this.setState({ results: results.Search, searching: false });
     });
   };
   render() {
