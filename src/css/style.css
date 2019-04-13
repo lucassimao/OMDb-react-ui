@@ -73,11 +73,37 @@ body {
   border-radius: 10px;
   padding: 20px;
 }
+.search-box input {
+  border: none;
+}
 .search-box input,
+.search-box select,
 .search-box button {
   font-size: 2em;
 }
 
+.search-box select,
 .search-box input {
   margin-right: 10px;
+}
+
+.paginator {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+
+.paginator li {
+  display: inline-block;
+  padding: 0 15px;
+  margin: 5px;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #826251;
+}
+
+.paginator li.selected {
+  background-color: gold;
+  color: black;
 }
