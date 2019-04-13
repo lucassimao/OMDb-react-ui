@@ -36,21 +36,18 @@ class App extends React.Component {
 
   handleKeywordChange = event => {
     this.setState({
-      keyword: event.target.value,
-      resultPage: 1
+      keyword: event.target.value
     });
   };
   handleYearChange = event => {
     this.setState({
-      year: event.target.value,
-      resultPage: 1
+      year: event.target.value
     });
   };
 
   handleTypeChange = event => {
     this.setState({
-      type: event.target.value,
-      resultPage: 1
+      type: event.target.value
     });
   };
   getResults = _ => {
@@ -58,22 +55,23 @@ class App extends React.Component {
   };
 
   changePage = page => {
-    this.setState({ resultPage: page }, this.handleSearchRequest);
-  };
-
-  handleSearchRequest = _ => {
     this.setState({ searching: true });
-    const { keyword, type, year, resultPage } = this.state;
+    const { keyword, type, year } = this.state;
 
-    new OmdbApi().search(keyword, type, year, resultPage).then(results => {
+    new OmdbApi().search(keyword, type, year, page).then(results => {
       this.setState({
         results: results.Search,
         searching: false,
+        resultPage: page,
         totalPages: results.Search
           ? +results.totalResults / results.Search.length
           : 0
       });
     });
+  };
+
+  handleSearchRequest = _ => {
+    this.changePage(1);
   };
   render() {
     return (
