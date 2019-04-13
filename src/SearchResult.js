@@ -16,8 +16,8 @@ const SearchResult = props => {
           ctx.searching ? (
             <img src={spinner} alt="wait ..." />
           ) : ctx.results ? (
-            ctx.results.map(movie => (
-              <li key={movie.imdbID}>
+            ctx.results.map((movie, index) => (
+              <li key={`${movie.imdbID}-${index}`}>
                 <h2 className="movie-title"> {movie.Title} </h2>
                 <img src={movie.Poster} onError={handleImgError} />
                 <section className="movie-details">
