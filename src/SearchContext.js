@@ -3,13 +3,17 @@ import React from "react";
 const SearchContext = React.createContext({
   keyword: "brazil",
   year: 2019,
-  searching:false,
+  searching: false,
   years: [],
   results: [],
+  resultPage: 1,
+  totalPages: 1,
+  pageSize: 10,
   handleKeywordChange() {},
   handleYearChange() {},
   handleSearchRequest() {},
   handleTypeChange() {},
+  changePage(idx) {},
   getResults() {}
 });
 

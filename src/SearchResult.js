@@ -10,10 +10,10 @@ const handleImgError = evt => {
 
 const SearchResult = props => {
   return (
-    <ul className="movie-list">
-      <Consumer>
-        {ctx =>
-          ctx.searching ? (
+    <Consumer>
+      {ctx => (
+        <ul className="movie-list">
+          {ctx.searching ? (
             <img src={spinner} alt="wait ..." />
           ) : ctx.results ? (
             ctx.results.map((movie, index) => (
@@ -37,10 +37,10 @@ const SearchResult = props => {
             ))
           ) : (
             <li>No results found</li>
-          )
-        }
-      </Consumer>
-    </ul>
+          )}
+        </ul>
+      )}
+    </Consumer>
   );
 };
 
