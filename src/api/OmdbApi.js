@@ -1,4 +1,4 @@
-const baseUrl = "http://www.omdbapi.com/?apikey=77b287be";
+const baseUrl = "https://www.omdbapi.com/?apikey=77b287be";
 
 class OmdbApi {
   moviesByYear(year) {
