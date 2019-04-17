@@ -1,5 +1,6 @@
 import React from "react";
 import { Consumer } from "./SearchContext";
+import "./css/searchbox.css";
 
 const SearchBox = () => {
   return (
@@ -39,7 +40,8 @@ const SearchBox = () => {
             ))}
           </select>
           <button onClick={ctx.handleSearchRequest} type="button">
-            Search
+            &#x1F50D;
+            <span className="button-text">Search</span>
           </button>
         </div>
       )}
