@@ -13,9 +13,8 @@
   margin-bottom: 10px;
 }
 
-.search-box select,
-.search-box input {
-  margin-right: 25px;
+.search-box select {
+  margin-right: 15px;
 }
 
 .search-box button {
@@ -26,6 +25,10 @@
   display: none;
 }
 @media screen and (min-width: 600px) {
+  .search-box select {
+    margin-right: 25px;
+  }
+
   .search-box {
     max-width: 700px;
     margin: 20px 0;

@@ -3,7 +3,7 @@
   min-width: 300px;
   margin: 10px;
   padding: 0;
-  width: 100%;
+  width: 95%;
 }
 
 .movie-list li {
@@ -80,6 +80,7 @@
 
 @media screen and (min-width: 600px) {
   .movie-list {
+    width: 100%;
     max-width: 700px;
     display: grid;
     grid-template-columns: 48% 48%;
