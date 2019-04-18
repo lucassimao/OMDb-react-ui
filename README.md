@@ -9,8 +9,11 @@ This project uses the following tools:
 * Babel
 * Parcel
 
-#Ipad screenshot
+## Ipad screenshot
+
 ![Ipad Screenshot](/screenshot.png?raw=true "Ipad Screenshot")
-#Iphone 6s screenshot
+
+## Iphone 6s screenshot
+
 ![Iphone 6s screenshot](/screenshot-2.png?raw=true "Iphone 6s screenshot")
 
