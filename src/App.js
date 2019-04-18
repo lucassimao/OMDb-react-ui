@@ -64,7 +64,7 @@ class App extends React.Component {
         searching: false,
         resultPage: page,
         totalPages: results.Search
-          ? +results.totalResults / results.Search.length
+          ? Math.floor(+results.totalResults / results.Search.length)
           : 0
       });
     });

@@ -17,5 +17,6 @@ const SearchContext = React.createContext({
   getResults() {}
 });
 
+export default SearchContext;
 export const Provider = SearchContext.Provider;
 export const Consumer = SearchContext.Consumer;

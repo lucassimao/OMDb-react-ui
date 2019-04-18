@@ -4,7 +4,10 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open Sans", "Source Sans Pro", Roboto, "HelveticaNeue-Light",
+    "Helvetica Neue Light", "Helvetica Neue", "Myriad Pro", "Segoe UI", Myriad,
+    Helvetica, "Lucida Grande", "DejaVu Sans Condensed", "Liberation Sans",
+    "Nimbus Sans L", Tahoma, Geneva, Arial, sans-serif;
   background-color: #fff;
   font-size: 15px;
 }
@@ -65,25 +68,4 @@ body {
   background-color: #826251;
   border-radius: 10px;
   padding: 10px;
-}
-
-.paginator {
-  list-style-type: none;
-  text-align: center;
-  padding: 0;
-}
-
-.paginator li {
-  display: inline-block;
-  padding: 0 15px;
-  margin: 5px;
-  font-weight: bold;
-  color: #ffffff;
-  border-radius: 5px;
-  background-color: #826251;
-}
-
-.paginator li.selected {
-  background-color: gold;
-  color: black;
 }

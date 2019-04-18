@@ -1,29 +1,76 @@
 import React from "react";
 import { Consumer } from "./SearchContext";
+import "./css/paginator.css";
 
-const buildPages = totalPages => {
-  const pages = [];
-  for (var i = 1; i <= totalPages; ++i) pages.push(i);
+class _Paginator extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return pages;
-};
+    this.maxPaginationButtons = window.matchMedia("(min-width:800px)").matches
+      ? 9
+      : window.matchMedia("(min-width:600px)").matches
+      ? 7
+      : window.matchMedia("(min-width:400px)").matches
+      ? 4
+      : 3;
+  }
 
-const Paginator = _ => (
-  <Consumer>
-    {ctx => (
+  buildPages = start => {
+    const pages = [];
+    start = start - ((start - 1) % this.maxPaginationButtons);
+    const end = Math.min(
+      this.props.ctx.totalPages,
+      start + this.maxPaginationButtons - 1
+    );
+
+    for (var i = start; i <= end; ++i) pages.push(i);
+    return pages;
+  };
+
+  render() {
+    const { totalPages, resultPage, changePage } = this.props.ctx;
+
+    return totalPages > 1 ? (
       <ul className="paginator">
-        {buildPages(ctx.totalPages).map((page, index) => (
+        {resultPage > 1 ? (
           <li
-            className={index + 1 == ctx.resultPage ? "selected" : ""}
+            className="paginator-previous"
+            onClick={_ => changePage(resultPage - 1)}
+          >
+            &#x2B05;
+          </li>
+        ) : (
+          ""
+        )}
+
+        {this.buildPages(resultPage).map(page => (
+          <li
+            className={page == resultPage ? "selected page" : "page"}
             key={page}
-            onClick={_ => ctx.changePage(index + 1)}
+            onClick={_ => changePage(page)}
           >
             {page}
           </li>
         ))}
+
+        {resultPage < totalPages ? (
+          <li
+            className="paginator-next"
+            onClick={_ => changePage(resultPage + 1)}
+          >
+            &#x27a1;
+          </li>
+        ) : (
+          ""
+        )}
       </ul>
-    )}
-  </Consumer>
-);
+    ) : (
+      ""
+    );
+  }
+}
+const Paginator = () => {
+  return <Consumer>{context => <_Paginator ctx={context} />}</Consumer>;
+};
 
 export default Paginator;
